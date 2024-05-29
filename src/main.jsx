@@ -1,3 +1,16 @@
+// Must Have
+  // User creation (DONE)
+  // User login (DONE)
+  // Endpoints protected (only available to authenticated user)
+  // CRUD operations - Create, Read, Update, and Delete books
+// Should Have
+  // Controls to change the sort order
+  // Options to sort by Genre and Author
+// Could Have
+  // Book ratings
+  // Favorites
+  // Deploy Frontend to Vercel and Backend to Fly
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
