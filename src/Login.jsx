@@ -9,7 +9,7 @@ function CreateUser() {
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-  
+
     const submit = () => {
       if (password.length < 8) {
         alert("Your password must be at least 8 characters long!")
@@ -69,7 +69,7 @@ function CreateUser() {
     )
 }
   
-function Login(props) {
+function Login() {
     const { auth } = useContext(AuthContext)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -77,7 +77,7 @@ function Login(props) {
     async function submit() {
       getToken({auth, username, password})
     }
-  
+    
     return (
       <div className="p-5">
         <h1>Login</h1>

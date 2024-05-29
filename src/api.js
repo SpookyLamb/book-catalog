@@ -39,3 +39,18 @@ export const fetchUser = ({ auth }) => {
         console.log('FETCH USER RESPONSE: ', response)
     }).catch(error => console.log("ERROR: ", error))
 }
+
+export const getBooks = ({ auth, setBooks }) => {
+    axios({
+        method: 'get',
+        url: `${baseUrl}/get-books/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        },
+    }).then(response => {
+        console.log("FETCH BOOKS RESPONSE: ", response)
+        setBooks(response.data)
+    }).catch(error => {
+        console.log("ERROR: ", error)
+    })
+}
