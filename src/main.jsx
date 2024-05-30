@@ -1,14 +1,14 @@
-// Must Have
+// Must Have (DONE)
   // User creation (DONE)
   // User login (DONE)
   // Endpoints protected (only available to authenticated user) (DONE)
   // CRUD operations - Create, Read, Update, and Delete books (DONE)
-// Should Have
-  // Controls to change the sort order
-  // Options to sort by Genre and Author
+// Should Have (DONE)
+  // Controls to change the sort order (DONE)
+  // Options to sort by Genre and Author (DONE)
 // Could Have
-  // Book ratings
-  // Favorites
+  // Book ratings (DONE)
+  // Favorites (DONE)
   // Deploy Frontend to Vercel and Backend to Fly
 
 import React from 'react'

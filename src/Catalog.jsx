@@ -11,6 +11,8 @@ import { Book } from "@mui/icons-material"
 import { Send } from "@mui/icons-material"
 import { Delete } from "@mui/icons-material"
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { useContext, useState, useEffect } from "react"
 import { AuthContext } from "./authContext"
 import { getBooks, createBook, editBook, deleteBook } from "./api"
@@ -104,6 +106,8 @@ function BookItem(props) {
                 value={rating}
                 onChange={(e) => {
                     let value = e.target.value
+                    console.log(value)
+
                     if (value > 5) {
                         value = 5
                     } else if (value < 0) {
@@ -131,6 +135,7 @@ function Catalog() {
     //needs to be a list of books, using the BookItem component
     const { auth } = useContext(AuthContext)
     const [books, setBooks] = useState({})
+    const [sortOrder, setSortOrder] = useState("")
 
     useEffect(() => {
         getBooks({ auth, setBooks })
@@ -138,6 +143,56 @@ function Catalog() {
 
     let keys = Object.keys(books)
     let bookList = []
+
+    if (sortOrder) { //anything other than an empty string
+        //takes the sort order and sorts the keys array (and therefore the draw order) based on what it finds
+
+        //done by constructing the following: 
+        //  an object containing the keys AS VALUES and the desired sorting data as the keys, for reference
+        //  an array of the desired sorting data, which is sorted
+
+        let obj = {}
+        let ref = []
+
+        switch (sortOrder) {
+            case "title":
+                for (const key of keys) {
+                    const book = books[key]
+                    const title = book.title
+                    ref.push(title)
+                    obj[title] = key
+                }
+                break;
+            case "author":
+                for (const key of keys) {
+                    const book = books[key]
+                    const author = book.author
+                    ref.push(author)
+                    obj[author] = key
+                }
+                break;
+            case "genre":
+                for (const key of keys) {
+                    const book = books[key]
+                    const genre = book.genre
+                    ref.push(genre)
+                    obj[genre] = key
+                }
+                break;
+            default: //ignore
+                break;
+        }
+
+        ref.sort() //sort our array
+        let new_keys = []
+
+        for (const key of ref) {
+            new_keys.push(obj[key]) //push our old keys back into the sorted order
+        }
+
+        keys = new_keys //set our new order
+        console.log(keys)
+    }
 
     for (let i = 0; i < keys.length; i++) {
         let book = books[keys[i]]
@@ -150,6 +205,7 @@ function Catalog() {
         bookList.push(
             <BookItem 
                 id={bookID}
+                key={uuidv4()}
                 title={book.title}
                 author={book.author}
                 genre={book.genre}
@@ -158,6 +214,8 @@ function Catalog() {
                 setBooks={setBooks}
             />
         )
+
+        console.log(bookList)
     }
 
     function addBook() {
@@ -166,6 +224,7 @@ function Catalog() {
         //add a new, blank/default book
         booksCopy["new"] = { //uses a fixed "new" key instead of a number key, only allows one "new" book at a time, this is changed when the book submits
             id: "new",
+            key: uuidv4(),
             title: "",
             author: "",
             genre: "",
@@ -187,13 +246,19 @@ function Catalog() {
                 </Col>
                 <Row className="text-center">
                     <Col className="col-3">
-                        Book Title
+                        <Button variant="text" onClick={() => setSortOrder("title")}>
+                            Book Title
+                        </Button>
                     </Col>
                     <Col className="col-2">
-                        Author
+                        <Button variant="text" onClick={() => setSortOrder("author")}>
+                            Author
+                        </Button>
                     </Col>
                     <Col className="col-2">
-                        Genre
+                        <Button variant="text" onClick={() => setSortOrder("genre")}>
+                            Genre
+                        </Button>
                     </Col>
                     <Col className="col-1">
                         Favorite?
