@@ -54,3 +54,25 @@ export const getBooks = ({ auth, setBooks }) => {
         console.log("ERROR: ", error)
     })
 }
+
+export const createBook = ({ auth, setBooks, title, author, genre }) => {
+    console.log(auth)
+    
+    axios({
+        method: 'post',
+        url: `${baseUrl}/create-book/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        },
+        data: {
+            title,
+            author,
+            genre,
+        }
+    }).then(response => {
+        console.log("CREATE BOOK RESPONSE: ", response)
+        getBooks({auth, setBooks}) //also sets books
+    }).catch(error => {
+        console.log("ERROR: ", error)
+    })
+}
