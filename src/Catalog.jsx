@@ -2,6 +2,15 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
+import { TextField } from "@mui/material"
+import { Button } from "@mui/material"
+import { IconButton } from "@mui/material"
+import { Rating } from "@mui/material"
+
+import { Book } from "@mui/icons-material"
+import { Send } from "@mui/icons-material"
+import { Delete } from "@mui/icons-material"
+
 import { useContext, useState, useEffect } from "react"
 import { AuthContext } from "./authContext"
 import { getBooks, createBook, editBook, deleteBook } from "./api"
@@ -54,21 +63,24 @@ function BookItem(props) {
     return (
         <Row className="py-2">
             <Col className="col-4">
-                <input
+                <TextField
+                variant="standard"
                 className="inputty"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 />
             </Col>
             <Col className="col-2">
-                <input
+                <TextField
+                variant="standard"
                 className="inputty"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 />
             </Col>
             <Col className="col-2">
-                <input
+                <TextField
+                variant="standard"
                 className="inputty"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
@@ -84,10 +96,11 @@ function BookItem(props) {
                 }}
                 />
             </Col>
-            <Col className="col-1">
-                <input
-                className="inputty"
-                type="number"
+            <Col className="col-1 d-flex justify-content-center">
+                <Rating
+                className="my-auto"
+                defaultValue={0}
+                precision={1}
                 value={rating}
                 onChange={(e) => {
                     let value = e.target.value
@@ -100,15 +113,15 @@ function BookItem(props) {
                 }}
                 />
             </Col>
-            <Col className="col-1">
-                <button onClick={() => {submit()}} >
-                    Submit
-                </button>
+            <Col className="col-1 text-end">
+                <IconButton variant="contained" color="success" onClick={() => {submit()}} >
+                    <Send />
+                </IconButton>
             </Col>
-            <Col className="col-1">
-                <button onClick={() => {deleteBookItem()}} >
-                    Delete
-                </button>
+            <Col className="col-1 text-start">
+                <IconButton variant="contained" color="error" onClick={() => {deleteBookItem()}} >
+                    <Delete />
+                </IconButton>
             </Col>
         </Row>
     )
@@ -167,14 +180,14 @@ function Catalog() {
         <div className="py-5">
             <Container className="p-5 pt-1 border catalog foreground-box">
                 <h1 className="text-center pt-3">Your Catalog</h1>
-                <Col className="text-center p-2">
-                    <button onClick={() => { addBook() }}>
+                <Col className="text-center p-2 pb-3">
+                    <Button variant="contained" size="large" startIcon={<Book/>} endIcon={<Book/>} onClick={() => { addBook() }}>
                             ADD NEW BOOK
-                    </button>
+                    </Button>
                 </Col>
                 <Row className="text-center">
                     <Col className="col-4">
-                        Title
+                        Book Title
                     </Col>
                     <Col className="col-2">
                         Author
