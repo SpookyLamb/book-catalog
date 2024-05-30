@@ -52,7 +52,7 @@ function BookItem(props) {
     }
 
     return (
-        <Row>
+        <Row className="py-2">
             <Col className="col-4">
                 <input
                 className="inputty"
@@ -77,8 +77,11 @@ function BookItem(props) {
             <Col className="col-1 d-flex justify-content-center">
                 <input
                 type="checkbox"
+                checked={favorite}
                 value={favorite}
-                onChange={(e) => setFavorite(e.target.value)}
+                onChange={(e) => {
+                    setFavorite(!favorite)
+                }}
                 />
             </Col>
             <Col className="col-1">
@@ -161,12 +164,37 @@ function Catalog() {
     }
 
     return (
-        <Container className="p-5">
-            <button onClick={() => { addBook() }}>
-                ADD NEW BOOK
-            </button>
-            {bookList}
-        </Container>
+        <div className="py-5">
+            <Container className="p-5 pt-1 border catalog foreground-box">
+                <h1 className="text-center pt-3">Your Catalog</h1>
+                <Col className="text-center p-2">
+                    <button onClick={() => { addBook() }}>
+                            ADD NEW BOOK
+                    </button>
+                </Col>
+                <Row className="text-center">
+                    <Col className="col-4">
+                        Title
+                    </Col>
+                    <Col className="col-2">
+                        Author
+                    </Col>
+                    <Col className="col-2">
+                        Genre
+                    </Col>
+                    <Col className="col-1">
+                        Favorite?
+                    </Col>
+                    <Col className="col-1">
+                        Rating
+                    </Col>
+                    <Col className="col-2">
+                        Actions
+                    </Col>
+                </Row>
+                {bookList}
+            </Container>
+        </div>
     )
 }
 

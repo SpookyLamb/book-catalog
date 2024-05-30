@@ -18,7 +18,9 @@ function App() {
     )
   } else { //otherwise, invalid access token, bring up the login page by default
     return (
-      <Login />
+      <div className="p-4">
+        <Login />
+      </div>
     )
   }
 }

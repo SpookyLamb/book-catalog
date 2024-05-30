@@ -3,6 +3,7 @@ html {
 }
 body {
   height: 100%;
+  background-image: url("./assets/library.jpg");
 }
 #root {
   display: flex;
@@ -16,4 +17,16 @@ body {
 
 .inputty {
   width: 100%;
+}
+
+.loggedin {
+  max-width: 300px;
+}
+
+.catalog {
+  min-height: 80vh;
+}
+
+.foreground-box {
+  background-color: beige;
 }

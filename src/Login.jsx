@@ -1,3 +1,7 @@
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+
 import { useContext, useState } from "react"
 import { AuthContext } from "./authContext"
 import { createUser, getToken } from "./api"
@@ -26,7 +30,7 @@ function CreateUser() {
   
     return (
       <div>
-        <h1>Register</h1>
+        <h2>Register</h2>
         <div>
           <div>Username:</div>
           <input
@@ -77,33 +81,40 @@ function Login() {
     async function submit() {
       getToken({auth, username, password})
     }
-    
+
     return (
-      <div className="p-5">
-        <h1>Login</h1>
-        <div>
-          <div>Username:</div>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <div>Password:</div>
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+      <Container className="p-5 text-center border foreground-box">
+        <h1 className="text-center p-3 pt-1">Book Catalog Login</h1>
+        <h2>Login</h2>
+        <Col>
+            <div>Username: </div>
+            <input
+                className="loggedin"
+                id="userlogin"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <div>Password: </div>
+            <input
+                className="loggedin"
+                id="passwordlogin"
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+        </Col>
   
         <div style={{marginTop: 20}}>
-          <button onClick={() => submit()}>Submit</button>
+            <button onClick={() => submit()}>Submit</button>
         </div>
   
-        <hr></hr>
+        <hr className=""></hr>
   
         <CreateUser/>
   
-      </div>
+      </Container>
     )
 }
 

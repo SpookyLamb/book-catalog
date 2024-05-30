@@ -1,8 +1,8 @@
 // Must Have
   // User creation (DONE)
   // User login (DONE)
-  // Endpoints protected (only available to authenticated user)
-  // CRUD operations - Create, Read, Update, and Delete books
+  // Endpoints protected (only available to authenticated user) (DONE)
+  // CRUD operations - Create, Read, Update, and Delete books (DONE)
 // Should Have
   // Controls to change the sort order
   // Options to sort by Genre and Author
