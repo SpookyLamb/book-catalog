@@ -99,3 +99,21 @@ export const editBook = ({ auth, setBooks, id, title, author, genre, favorite, r
         console.log("ERROR: ", error)
     })
 }
+
+export const deleteBook = ({ auth, setBooks, id }) => {
+    axios({
+        method: 'delete',
+        url: `${baseUrl}/delete-book/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        },
+        data: {
+            id,
+        }
+    }).then(response => {
+        console.log("DELETE BOOK SUCCESSFUL")
+        getBooks({auth, setBooks})
+    }).catch(error => {
+        console.log("ERROR: ", error)
+    })
+}

@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col"
 
 import { useContext, useState, useEffect } from "react"
 import { AuthContext } from "./authContext"
-import { getBooks, createBook, editBook } from "./api"
+import { getBooks, createBook, editBook, deleteBook } from "./api"
 
 function BookItem(props) {
     //needs to have the following: title, author, genre, favorite status, user rating
@@ -47,22 +47,29 @@ function BookItem(props) {
         }
     }
 
+    function deleteBookItem() {
+        deleteBook( {auth, setBooks, id} )
+    }
+
     return (
         <Row>
-            <Col className="col-3">
+            <Col className="col-4">
                 <input
+                className="inputty"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 />
             </Col>
             <Col className="col-2">
                 <input
+                className="inputty"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 />
             </Col>
             <Col className="col-2">
                 <input
+                className="inputty"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
                 />
@@ -74,8 +81,9 @@ function BookItem(props) {
                 onChange={(e) => setFavorite(e.target.value)}
                 />
             </Col>
-            <Col className="col-2">
+            <Col className="col-1">
                 <input
+                className="inputty"
                 type="number"
                 value={rating}
                 onChange={(e) => {
@@ -89,9 +97,14 @@ function BookItem(props) {
                 }}
                 />
             </Col>
-            <Col className="col-2">
+            <Col className="col-1">
                 <button onClick={() => {submit()}} >
                     Submit
+                </button>
+            </Col>
+            <Col className="col-1">
+                <button onClick={() => {deleteBookItem()}} >
+                    Delete
                 </button>
             </Col>
         </Row>
@@ -112,10 +125,15 @@ function Catalog() {
 
     for (let i = 0; i < keys.length; i++) {
         let book = books[keys[i]]
+        let bookID = book.id
+        
+        if (bookID !== "new") {
+            bookID = Number(bookID)
+        }
 
         bookList.push(
             <BookItem 
-                id={Number(book.id)}
+                id={bookID}
                 title={book.title}
                 author={book.author}
                 genre={book.genre}
@@ -131,6 +149,7 @@ function Catalog() {
         
         //add a new, blank/default book
         booksCopy["new"] = { //uses a fixed "new" key instead of a number key, only allows one "new" book at a time, this is changed when the book submits
+            id: "new",
             title: "",
             author: "",
             genre: "",
