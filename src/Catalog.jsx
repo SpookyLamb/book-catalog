@@ -4,12 +4,14 @@ import Col from "react-bootstrap/Col"
 
 import { useContext, useState, useEffect } from "react"
 import { AuthContext } from "./authContext"
-import { getBooks, createBook } from "./api"
+import { getBooks, createBook, editBook } from "./api"
 
 function BookItem(props) {
     //needs to have the following: title, author, genre, favorite status, user rating
     //needs to also have buttons to edit and delete the book from the list
     
+    //console.log(typeof props.favorite, props.favorite) //uncomment this and below to witness the dumbest bug ever
+
     const { auth } = useContext(AuthContext)
     const [title, setTitle] = useState(props.title)
     const [author, setAuthor] = useState(props.author)
@@ -17,12 +19,28 @@ function BookItem(props) {
     const [favorite, setFavorite] = useState(props.favorite)
     const [rating, setRating] = useState(props.rating)
 
+    //console.log(typeof favorite, favorite) //uncomment this and above to witness the dumbest bug ever
+
+    const id = props.id
     const setBooks = props.setBooks //set books function
 
     function submit() {
         if (title && author && genre) {
-            console.log(auth)
-            createBook({ auth, setBooks, title, author, genre })
+
+            let fixedFavorite //a fix for the DUMBEST bug I have EVER witnessed, I swear to god
+            if (favorite === "true") {
+                fixedFavorite = true
+            } else if (favorite === "false") {
+                fixedFavorite = false
+            } else {
+                fixedFavorite = favorite
+            }
+
+            if (id !== "new") {
+                editBook({ auth, setBooks, id, title, author, genre, favorite: fixedFavorite, rating }) //edit a book by id
+            } else {
+                createBook({ auth, setBooks, title, author, genre, favorite: fixedFavorite, rating }) //create a new book
+            }
         } else {
             alert("A book requires a book, author, and genre!")
             return
@@ -94,8 +112,10 @@ function Catalog() {
 
     for (let i = 0; i < keys.length; i++) {
         let book = books[keys[i]]
+
         bookList.push(
             <BookItem 
+                id={Number(book.id)}
                 title={book.title}
                 author={book.author}
                 genre={book.genre}
