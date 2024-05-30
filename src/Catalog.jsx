@@ -62,7 +62,7 @@ function BookItem(props) {
 
     return (
         <Row className="py-2">
-            <Col className="col-4">
+            <Col className="col-3">
                 <TextField
                 variant="standard"
                 className="inputty"
@@ -96,7 +96,7 @@ function BookItem(props) {
                 }}
                 />
             </Col>
-            <Col className="col-1 d-flex justify-content-center">
+            <Col className="col-2 d-flex justify-content-center">
                 <Rating
                 className="my-auto"
                 defaultValue={0}
@@ -178,7 +178,7 @@ function Catalog() {
 
     return (
         <div className="py-5">
-            <Container className="p-5 pt-1 border catalog foreground-box">
+            <Container className="p-5 pt-1 my-border catalog foreground-box">
                 <h1 className="text-center pt-3">Your Catalog</h1>
                 <Col className="text-center p-2 pb-3">
                     <Button variant="contained" size="large" startIcon={<Book/>} endIcon={<Book/>} onClick={() => { addBook() }}>
@@ -186,7 +186,7 @@ function Catalog() {
                     </Button>
                 </Col>
                 <Row className="text-center">
-                    <Col className="col-4">
+                    <Col className="col-3">
                         Book Title
                     </Col>
                     <Col className="col-2">
@@ -198,7 +198,7 @@ function Catalog() {
                     <Col className="col-1">
                         Favorite?
                     </Col>
-                    <Col className="col-1">
+                    <Col className="col-2">
                         Rating
                     </Col>
                     <Col className="col-2">

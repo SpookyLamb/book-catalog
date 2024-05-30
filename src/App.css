@@ -28,5 +28,12 @@ body {
 }
 
 .foreground-box {
-  background-color: beige;
+  background-color: antiquewhite;
+}
+
+.my-border {
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 30px;
 }

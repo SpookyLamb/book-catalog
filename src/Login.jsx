@@ -2,6 +2,9 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
+import { TextField } from "@mui/material"
+import { Button } from "@mui/material"
+
 import { useContext, useState } from "react"
 import { AuthContext } from "./authContext"
 import { createUser, getToken } from "./api"
@@ -29,47 +32,64 @@ function CreateUser() {
     }
   
     return (
-      <div>
+    <div>
         <h2>Register</h2>
         <div>
-          <div>Username:</div>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <div>Password:</div>
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div>Confirm Password:</div>
-          <input
-            type='password'
-            value={passwordConf}
-            onChange={(e) => setPasswordConf(e.target.value)}
-          />
-          <div>Email:</div>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div>First Name:</div>
-          <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <div>Last Name:</div>
-          <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+        <Col>
+            <TextField
+                label="Username"
+                variant="standard"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <TextField
+                label="Password"
+                variant="standard"
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <TextField
+                label="Confirm Password"
+                variant="standard"
+                value={passwordConf}
+                onChange={(e) => setPasswordConf(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <TextField
+                label="Email"
+                variant="standard"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <TextField
+                label="First Name"
+                variant="standard"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+            />
+        </Col>
+        <Col>
+            <TextField
+                label="Last Name"
+                variant="standard"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+            />
+        </Col>
         </div>
   
-        <div style={{marginTop: 20}}>
-          <button onClick={() => submit()}>Submit</button>
+        <div className="pt-4">
+          <Button variant="contained" onClick={() => submit()}>Register!</Button>
         </div>
-      </div>
+    </div>
     )
 }
   
@@ -83,21 +103,23 @@ function Login() {
     }
 
     return (
-      <Container className="p-5 text-center border foreground-box">
-        <h1 className="text-center p-3 pt-1">Book Catalog Login</h1>
+      <Container className="p-5 text-center my-border foreground-box">
+        <h1 className="text-center p-3 pt-1">Book Catalog</h1>
         <h2>Login</h2>
-        <Col>
-            <div>Username: </div>
-            <input
+        <Col className="p-1">
+            <TextField
+                label="Username"
+                variant="standard"
                 className="loggedin"
                 id="userlogin"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
         </Col>
-        <Col>
-            <div>Password: </div>
-            <input
+        <Col className="p-1">
+            <TextField
+                label="Password"
+                variant="standard"
                 className="loggedin"
                 id="passwordlogin"
                 type='password'
@@ -106,8 +128,8 @@ function Login() {
             />
         </Col>
   
-        <div style={{marginTop: 20}}>
-            <button onClick={() => submit()}>Submit</button>
+        <div className="pt-4">
+            <Button variant="contained" onClick={() => submit()}>Login!</Button>
         </div>
   
         <hr className=""></hr>
