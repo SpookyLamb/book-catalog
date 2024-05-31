@@ -64,7 +64,7 @@ function BookItem(props) {
 
     return (
         <Row className="py-2">
-            <Col className="col-3">
+            <Col className="col-12 col-lg-3 py-1 py-lg-0">
                 <TextField
                 variant="standard"
                 className="inputty"
@@ -72,7 +72,7 @@ function BookItem(props) {
                 onChange={(e) => setTitle(e.target.value)}
                 />
             </Col>
-            <Col className="col-2">
+            <Col className="col-6 col-lg-2 py-1 py-lg-0">
                 <TextField
                 variant="standard"
                 className="inputty"
@@ -80,7 +80,7 @@ function BookItem(props) {
                 onChange={(e) => setAuthor(e.target.value)}
                 />
             </Col>
-            <Col className="col-2">
+            <Col className="col-6 col-lg-2 py-1 py-lg-0">
                 <TextField
                 variant="standard"
                 className="inputty"
@@ -88,17 +88,7 @@ function BookItem(props) {
                 onChange={(e) => setGenre(e.target.value)}
                 />
             </Col>
-            <Col className="col-1 d-flex justify-content-center">
-                <input
-                type="checkbox"
-                checked={favorite}
-                value={favorite}
-                onChange={(e) => {
-                    setFavorite(!favorite)
-                }}
-                />
-            </Col>
-            <Col className="col-2 d-flex justify-content-center">
+            <Col className="col-6 col-lg-2 d-flex justify-content-center py-2 py-lg-0 px-1 px-lg-0">
                 <Rating
                 className="my-auto"
                 defaultValue={0}
@@ -106,7 +96,6 @@ function BookItem(props) {
                 value={rating}
                 onChange={(e) => {
                     let value = e.target.value
-                    console.log(value)
 
                     if (value > 5) {
                         value = 5
@@ -117,12 +106,23 @@ function BookItem(props) {
                 }}
                 />
             </Col>
-            <Col className="col-1 text-end">
+            <Col className="col-6 col-lg-1 d-flex justify-content-center py-2 py-lg-0 px-1 px-lg-0">
+                <input
+                type="checkbox"
+                className="checkbox my-auto"
+                checked={favorite}
+                value={favorite}
+                onChange={(e) => {
+                    setFavorite(!favorite)
+                }}
+                />
+            </Col>
+            <Col className="col-6 col-lg-1 text-end py-2 py-lg-0">
                 <IconButton variant="contained" color="success" onClick={() => {submit()}} >
                     <Send />
                 </IconButton>
             </Col>
-            <Col className="col-1 text-start">
+            <Col className="col-6 col-lg-1 text-start py-2 py-lg-0">
                 <IconButton variant="contained" color="error" onClick={() => {deleteBookItem()}} >
                     <Delete />
                 </IconButton>
@@ -191,7 +191,6 @@ function Catalog() {
         }
 
         keys = new_keys //set our new order
-        console.log(keys)
     }
 
     for (let i = 0; i < keys.length; i++) {
@@ -214,8 +213,6 @@ function Catalog() {
                 setBooks={setBooks}
             />
         )
-
-        console.log(bookList)
     }
 
     function addBook() {
@@ -244,32 +241,39 @@ function Catalog() {
                             ADD NEW BOOK
                     </Button>
                 </Col>
-                <Row className="text-center">
-                    <Col className="col-3">
+                <Row className="text-lg-center">
+                    <Col className="text-center col-12 col-lg-3 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("title")}>
                             Book Title
                         </Button>
                     </Col>
-                    <Col className="col-2">
+                    <Col className="text-end text-lg-center col-6 col-lg-2 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("author")}>
                             Author
                         </Button>
                     </Col>
-                    <Col className="col-2">
+                    <Col className="text-start text-lg-center col-6 col-lg-2 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("genre")}>
                             Genre
                         </Button>
                     </Col>
-                    <Col className="col-1">
-                        Favorite?
+                    <Col className="text-end text-lg-center col-6 col-lg-2 py-lg-0">
+                        <Button disabled variant="text">
+                            Rating
+                        </Button>
                     </Col>
-                    <Col className="col-2">
-                        Rating
+                    <Col className="text-start text-lg-center col-6 col-lg-1 py-lg-0">
+                        <Button disabled variant="text">
+                            Fav?
+                        </Button>
                     </Col>
-                    <Col className="col-2">
-                        Actions
+                    <Col className="text-center col-12 col-lg-2 py-lg-0">
+                        <Button disabled variant="text">
+                            Actions
+                        </Button>
                     </Col>
                 </Row>
+                <hr></hr>
                 {bookList}
             </Container>
         </div>
