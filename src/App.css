@@ -3,6 +3,7 @@ html {
 }
 body {
   height: 100%;
+  background-image: url("./assets/library.jpg");
 }
 #root {
   display: flex;
@@ -12,4 +13,27 @@ body {
 }
 #page-content {
   flex-grow: 2;
+}
+
+.inputty {
+  width: 100%;
+}
+
+.loggedin {
+  max-width: 300px;
+}
+
+.catalog {
+  min-height: 80vh;
+}
+
+.foreground-box {
+  background-color: antiquewhite;
+}
+
+.my-border {
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 30px;
 }
