@@ -241,33 +241,33 @@ function Catalog() {
                             ADD NEW BOOK
                     </Button>
                 </Col>
-                <Row className="text-center">
-                    <Col className="col-12 col-lg-3 py-lg-0">
+                <Row className="text-lg-center">
+                    <Col className="text-center col-12 col-lg-3 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("title")}>
                             Book Title
                         </Button>
                     </Col>
-                    <Col className="col-6 col-lg-2 py-lg-0">
+                    <Col className="text-end text-lg-center col-6 col-lg-2 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("author")}>
                             Author
                         </Button>
                     </Col>
-                    <Col className="col-6 col-lg-2 py-lg-0">
+                    <Col className="text-start text-lg-center col-6 col-lg-2 py-lg-0">
                         <Button variant="text" onClick={() => setSortOrder("genre")}>
                             Genre
                         </Button>
                     </Col>
-                    <Col className="col-6 col-lg-2 py-lg-0">
+                    <Col className="text-end text-lg-center col-6 col-lg-2 py-lg-0">
                         <Button disabled variant="text">
                             Rating
                         </Button>
                     </Col>
-                    <Col className="col-6 col-lg-1 py-lg-0">
+                    <Col className="text-start text-lg-center col-6 col-lg-1 py-lg-0">
                         <Button disabled variant="text">
                             Fav?
                         </Button>
                     </Col>
-                    <Col className="col-12 col-lg-2 py-lg-0">
+                    <Col className="text-center col-12 col-lg-2 py-lg-0">
                         <Button disabled variant="text">
                             Actions
                         </Button>
