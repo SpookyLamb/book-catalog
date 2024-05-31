@@ -6,10 +6,9 @@ body {
   background-image: url("./assets/library.jpg");
 }
 #root {
-  display: flex;
   height: 100%;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column;
+  justify-content: center; */
 }
 #page-content {
   flex-grow: 2;
@@ -36,4 +35,13 @@ body {
   border-color: black;
   border-style: solid;
   border-radius: 30px;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+  color: black !important;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
 }
