@@ -106,7 +106,6 @@ function BookItem(props) {
                 value={rating}
                 onChange={(e) => {
                     let value = e.target.value
-                    console.log(value)
 
                     if (value > 5) {
                         value = 5
@@ -191,7 +190,6 @@ function Catalog() {
         }
 
         keys = new_keys //set our new order
-        console.log(keys)
     }
 
     for (let i = 0; i < keys.length; i++) {
@@ -214,8 +212,6 @@ function Catalog() {
                 setBooks={setBooks}
             />
         )
-
-        console.log(bookList)
     }
 
     function addBook() {
